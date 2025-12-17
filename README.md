@@ -92,7 +92,7 @@ assign df=w1^bin;
 assign bo=w2|w3;
 endmodule
 ```
-/* Program to design a Full adder and full subtractor circuit and verify its truth table in quartus using Verilog programming. Developed by: KARTHIKEYAN S RegisterNumber:24900102
+/* Program to design a Full adder and full subtractor circuit and verify its truth table in quartus using Verilog programming.
 */
 
 **RTL Schematic**
