@@ -1,7 +1,7 @@
 # FULL_ADDER_SUBTRACTOR
 
 Implementation-of-Full-Adder-and-Full-subtractor-circuit
-  
+
 **AIM:**
 
 To design a Full Adder and Full Subtractor circuit and verify its truth table in Quartus using Verilog programming.
@@ -37,69 +37,87 @@ Diff = A ⊕ B ⊕ Bin
 Borrow out = A'Bin + A'B + BBin
 
 **Truthtable**
-Truth Table for Full adder:
-A	B	C	Sum	Carry
-0	0	0	0	0
-0	0	1	1	0
-0	1	0	1	0
-0	1	1	0	1
-1	0	0	1	0
-1	0	1	0	1
-1	1	0	0	1
-1	1	1	1	1
 
-Truth Table for Full subractor:
-A	B	B  Diff	Bout
-0	0	0	0	0
-0	0	1	1	1
-0	1	0	1	1
-0	1	1	0	1
-1	0	0	1	0
-1	0	1	0	0
-1	1	0	0	0
-1	1	1	1	1
+```Full Adder```
+
+![2-41](https://github.com/user-attachments/assets/38a4f897-b767-496a-ac23-aa6c8c42fbc8)
+
+```Full subtractor```
+
+![full-subtractor-truth-table](https://github.com/user-attachments/assets/eecf3961-d85d-49c1-932c-3a4744101000)
+
+
 
 **Procedure**
-Full adder Procedure:
-Take three inputs: A, B, and Carry-in (Cin).
+```
+1. Type the program in Quartus software.
+2. Compile and run the program.
+3. Generate the RTL schematic and save the logic diagram.
+4. Create nodes for inputs and outputs to generate the timing diagram.
+5. For different input combination generate the timing diagram.
+```
 
-Add the three inputs using logic gates.
-
-Use XOR gates to get the Sum of the three bits.
-
-Use AND and OR gates to find the Carry-out (Cout).
-
-Sum shows the final bit, and Cout shows the carry generated.
-
-Full subractor Procedure:
-Take three inputs: A, B, and Borrow-in (Bin).
-
-Subtract B and Bin from A using logic gates.
-
-Use XOR gates to get the Difference.
-
-Use AND and OR gates to get the Borrow-out (Bout).
-
-Difference shows output bit, and Bout shows borrow needed.
 
 **Program:**
+```FULL ADDER```
 ```
-module exp4(A,B,C,X,Y,Z,Sum,Carry,Diff,Bout);
-input A,B,C,X,Y,Z;
-output Sum,Carry,Diff,Bout;
-xor g1(Sum,A,B,C);
-assign Carry= (A&B)|(B&C)|(A&C);
-xor g2(Diff,X,Y,Z);
-assign Bout= (~X&Z)|(Y&Z)|(~X&Y);
+module exp4(sum,cout,a,b,cin);
+output sum;
+output cout;
+input a;
+input b;
+input cin;
+wire sl,cl,c2;
+xor(sl,a,b);
+and(cl,a,b);
+xor(sum,sl,cin);
+and(c2,sl,cin);
+or(cout,c2,cl);
 endmodule
-
 ```
+
+```FULL SUBTRACTOR```
+```
+module exp4sub(df,bo,a,b,bin);
+output df;
+output bo;
+input a; 
+input b;
+input bin;
+wire w1,w2,w3;
+assign w1=a^b;
+assign w2=(~a&b);
+assign w3=(~w1&bin);
+assign df=w1^bin;
+assign bo=w2|w3;
+endmodule
+```
+/* Program to design a Full adder and full subtractor circuit and verify its truth table in quartus using Verilog programming. Developed by: KARTHIKEYAN S RegisterNumber:24900102
+*/
 
 **RTL Schematic**
-![alt text](<Screenshot 2025-11-17 213629.png>)
+
+```FULL ADDER```
+
+![Screenshot 2024-11-12 110458](https://github.com/user-attachments/assets/164a6f44-08ac-4d35-a479-46439dfc0ff4)
+
+```FULL SUBTRACTOR```
+
+![Screenshot 2024-11-12 113852](https://github.com/user-attachments/assets/e2483152-4426-4c62-9511-4e50e246a1c2)
+
+
 
 **Output Timing Waveform**
-![alt text](<Screenshot 2025-11-17 214300.png>)
+
+```FULL ADDER```
+
+![Screenshot 2024-11-12 111719](https://github.com/user-attachments/assets/a53c2bc3-5bf6-40f1-9ff8-fbcbad3fb7fd)
+
+```FULL SUBTRACTOR```
+
+![Screenshot 2024-11-12 114441](https://github.com/user-attachments/assets/ae218389-b928-48e3-a1e4-fb7bde718646)
+
+
 
 **Result:**
 
